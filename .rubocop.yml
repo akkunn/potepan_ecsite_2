@@ -4,10 +4,16 @@ inherit_from:
 
 AllCops:
   Exclude:      
-    - spec/**/*    
     - 'lib/tasks/*'
     - 'vendor/**/*'
     - 'path/ruby'
     - 'spec/**/*'
     - 'Gemfile'
     - 'app/helpers/**/*' 
+    - 'db/**/*'
+    - 'config/initializers/*'
+    - 'bin/*'
+    - 'config/environments/*'
+    - 'config/spring.rb'
+    - 'config/routes.rb'
+    
