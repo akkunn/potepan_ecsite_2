@@ -3,7 +3,6 @@
   <head>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,5 +24,6 @@
     </div>
     <%= render partial: 'shared/login_modal' %>
     <%= render partial: 'shared/signup_modal' %>
+    <%= javascript_include_tag 'application' %>
   </body>
 </html>
