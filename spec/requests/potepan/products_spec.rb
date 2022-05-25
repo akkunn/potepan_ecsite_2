@@ -17,7 +17,7 @@ RSpec.describe "Potepan::Products", type: :request do
     end
 
     it "have product.price" do
-      expect(response.body).to include(product.price.to_s)
+      expect(response.body).to include(product.display_price.to_s)
     end
 
     it "have product.description" do
