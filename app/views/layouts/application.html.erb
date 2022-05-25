@@ -18,6 +18,10 @@
     <![endif]-->
   </head>
   <body>
+    <div class="main-wrapper">
+      <%= render partial: 'shared/header' %>
+    </div>
     <%= yield %>
+    <%= render partial: 'shared/footer' %>
   </body>
 </html>
