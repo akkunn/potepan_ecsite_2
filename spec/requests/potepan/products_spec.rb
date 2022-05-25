@@ -5,7 +5,9 @@ RSpec.describe "Potepan::Products", type: :request do
     before do
       get potepan_product_path(product.id)
     end
+
     let(:product) { create(:product) }
+
     it "returns http success" do
       expect(response).to have_http_status(:success)
     end
