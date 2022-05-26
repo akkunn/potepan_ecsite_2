@@ -17,12 +17,12 @@
   </head>
   <body>
     <div class="main-wrapper">
-      <%= render partial: 'shared/header' %>
+      <%= render 'shared/header' %>
       <%= yield %>
-      <%= render partial: 'shared/footer' %>
+      <%= render 'shared/footer' %>
     </div>
-    <%= render partial: 'shared/login_modal' %>
-    <%= render partial: 'shared/signup_modal' %>
+    <%= render 'shared/login_modal' %>
+    <%= render 'shared/signup_modal' %>
     <%= javascript_include_tag 'application' %>
   </body>
 </html>
