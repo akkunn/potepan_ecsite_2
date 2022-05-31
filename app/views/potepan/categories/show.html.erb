@@ -2,9 +2,6 @@
   <%= provide(:title, @taxon.name)%>
 
 
-  <body>
-
-    <div class="main-wrapper">
 
 
 
@@ -42,8 +39,8 @@
                 <div class="panel-body">
                   <div class="collapse navbar-collapse navbar-ex1-collapse navbar-side-collapse">
                     <ul class="nav navbar-nav side-nav">
-                      <li>
-                        <% @taxonomies.each do |taxonomy| %>
+                      <% @taxonomies.each do |taxonomy| %>
+                        <li>
                           <a href="javascript:;" data-toggle="collapse" data-target="#<%= taxonomy.id %>"><%= taxonomy.name %><i class="fa fa-plus"></i></a>
                           <ul id="<%= taxonomy.id %>" class="collapse collapseItem">
                             <% taxonomy.root.leaves.each do |taxon| %>
@@ -55,8 +52,8 @@
                             <% end %>
                             <%# <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Shirts <span>(2)</span></a></li> %>
                           </ul>
-                        <% end %>
-                      </li>
+                        </li>
+                      <% end %>
                       <%# <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#women">Categories<i class="fa fa-plus"></i></a>
                         <ul id="women" class="collapse collapseItem">
@@ -140,15 +137,15 @@
                 <% @products.each do |product| %>
                   <div class="col-sm-4 col-xs-12">
                     <div class="productBox">
-                      <div class="productCaption clearfix">
-                        <%= link_to potepan_product_path(product.id) do %>
-                          <div class="productImage clearfix">
-                              <%= image_tag product.display_image.attachment(:small) %>
-                          </div>
+                      <%= link_to potepan_product_path(product.id) do %>
+                        <div class="productImage clearfix">
+                          <%= image_tag product.display_image.attachment(:product), :alt => "products-imgs" %>
+                        </div>
+                        <div class="productCaption clearfix">
                           <h5><%= product.name %></h5>
                           <h3><%= product.display_price %></h3>
-                        <% end %>
-                      </div>
+                        </div>
+                      <% end %>
                     </div>
                   </div>
                 <% end %>
@@ -209,7 +206,7 @@
           </div>
         </div>
       </section>
-    </div>
+
 
     <!-- LOGIN MODAL -->
     <div class="modal fade" id="login" tabindex="-1" role="dialog">
@@ -270,5 +267,3 @@
         </div>
       </div>
     </div>
-  </body>
-</html>
