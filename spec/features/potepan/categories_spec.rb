@@ -21,11 +21,11 @@ RSpec.feature "Potepan::Categories", type: :feature do
       end
     end
 
-    scenario 'product information' do
-      # binding.pry
-        expect(page).to have_content taxon.products.first.name
+    # scenario 'product information' do
+    #   # binding.pry
+    #     expect(page).to have_content taxon.products.first.name
 
-    end
+    # end
 
     scenario 'moving success to index page' do
         find('.home').click

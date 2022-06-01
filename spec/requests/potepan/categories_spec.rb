@@ -2,12 +2,15 @@ require 'rails_helper'
 
 RSpec.describe "Potepan::Categories", type: :request do
   describe "GET /show" do
-    # let(:taxon) { create(:taxon, parent_id: taxonomy.root.id, taxonomy: taxonomy) }
-    let(:taxon) { create(:taxon) }
     let(:taxonomy) { create(:taxonomy) }
+    # let(:taxon) { create(:taxon, taxonomy: taxonomy, parent: root, name: "taxon") }
+    let(:taxon) { create(:taxon, taxonomy: taxonomy) }
     let(:product) { create(:product, taxons: [taxon]) }
+    let(:image) { create(:image) }
+    # let(:root) { taxonomy.root }
 
     before do
+      product.images << image
       get potepan_category_path(taxon.id)
     end
 
@@ -15,13 +18,30 @@ RSpec.describe "Potepan::Categories", type: :request do
       expect(response).to have_http_status(:success)
     end
 
-    it "have taxon.name" do
+    it "has taxon.name" do
       expect(response.body).to include(taxon.name)
     end
 
-    it "have taxonomy.name" do
+    it "has taxonomy.name" do
       expect(response.body).to include(taxonomy.name)
     end
+
+    it "has correct product.name" do
+      expect(response.body).to include product.name
+    end
+
+    it "has correct product.price" do
+      expect(response.body).to include product.display_price.to_s
+    end
+  end
+end
+
+
+    # let(:taxon) { create(:taxon, parent_id: taxonomy.root.id, taxonomy: taxonomy) }
+    # let(:taxon) { create(:taxon) }
+    # let(:taxonomy) { create(:taxonomy) }
+    # let(:product) { create(:product, taxons: [taxon]) }
+
 
     # it 'have product.name' do
     #   binding.pry
@@ -30,8 +50,3 @@ RSpec.describe "Potepan::Categories", type: :request do
     #   end
     #     expect(response.body).to include(product.name)
     # end
-
-  end
-
-
-end
