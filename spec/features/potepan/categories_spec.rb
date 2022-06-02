@@ -30,7 +30,6 @@ RSpec.feature "Potepan::Categories", type: :feature do
         expect(page).to have_content shirts.products.count
         expect(page).to have_content bags.name
         expect(page).to_not have_content clothing.name
-        # binding.pry
       end
       within ".productBox" do
         expect(page).to have_content product1.name
@@ -40,10 +39,6 @@ RSpec.feature "Potepan::Categories", type: :feature do
         expect(page).to have_selector "img[src$='#{filename}']"
       end
     end
-      # within ".lightSection.clearfix.pageHeader" do
-      #   expect(page).to have_selector 'h2', text: taxon.name
-      #   expect(page).to have_selector '.active', text: taxon.name
-      # end
 
     scenario 'move products page from category page in productBox class' do
       click_on product1.name
@@ -73,31 +68,3 @@ RSpec.feature "Potepan::Categories", type: :feature do
     end
   end
 end
-
-    # scenario "show products" do
-    #   expect(page).to have_content product1.name
-    #   expect(page).to have_content product1.display_price.to_s
-    #   expect(page).to have_selector "img[src$='#{filename}']"
-
-      # scenario 'moving success to index page' do
-      #     find('.home').click
-      #     expect(current_path).to eq potepan_index_path
-      # end
-
-
-      # binding.pry
-      # expect(page).to have_selector "img[src$='#{rails_blob_path(product.display_image.attachment){:small}}']"
-      # expect(page).to have_selector "img[src$='#{image.attachment(:small)}']"
-      # expect(page).to have_selector "img[src$='#{product.display_image.attachment(:small)}']"
-      # binding.pry
-
-
-    # scenario 'display categories page' do
-    #   within ".side-nav" do
-    #     expect(page).to have_content taxonomy.name
-    #   end
-    #   within ".lightSection.clearfix.pageHeader" do
-    #     expect(page).to have_selector 'h2', text: taxon.name
-    #     expect(page).to have_selector '.active', text: taxon.name
-    #   end
-    # end

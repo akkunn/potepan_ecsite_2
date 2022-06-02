@@ -6,11 +6,9 @@ RSpec.describe "Potepan::Products", type: :request do
       get potepan_product_path(product.id)
     end
 
-    # let(:taxonomy) { create(:taxonomy) }
+    let(:taxonomy) { create(:taxonomy) }
     let(:taxon) { create(:taxon) }
-    # let(:product) { create(:product, taxons: taxon) }
     let(:product) { create(:product, taxons: [taxon]) }
-
 
     it "returns http success" do
       expect(response).to have_http_status(:success)
@@ -28,6 +26,5 @@ RSpec.describe "Potepan::Products", type: :request do
     it "have product.description" do
       expect(response.body).to include(product.description)
     end
-
   end
 end
