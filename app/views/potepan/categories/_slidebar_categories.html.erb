@@ -5,8 +5,8 @@
       <ul class="nav navbar-nav side-nav">
         <% taxonomies.each do |taxonomy| %>
           <li>
-            <a href="javascript:;" data-toggle="collapse" data-target="#<%= taxonomy.id %>"><%= taxonomy.name %><i class="fa fa-plus"></i></a>
-            <ul id="<%= taxonomy.id %>" class="collapse collapseItem">
+            <a href="javascript:;" data-toggle="collapse" data-target="#taxonomy_id_<%= taxonomy.id %>"><%= taxonomy.name %><i class="fa fa-plus"></i></a>
+            <ul id="taxonomy_id_<%= taxonomy.id %>" class="collapse collapseItem">
               <% taxonomy.root.leaves.each do |taxon| %>
                 <li>
                   <%= link_to potepan_category_path(taxon.id) do %>
