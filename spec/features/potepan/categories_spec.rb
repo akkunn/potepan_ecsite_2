@@ -64,6 +64,13 @@ RSpec.feature "Potepan::Categories", type: :feature do
       expect(page).to_not have_content product1.name
       expect(page).to_not have_content product1.display_price.to_s
     end
+
+    scenario 'move home from product page' do
+      within '.breadcrumb.pull-right' do
+        click_link 'Home'
+        expect(current_path).to eq potepan_index_path
+      end
+    end
   end
 end
 
