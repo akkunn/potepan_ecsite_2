@@ -4,17 +4,15 @@ RSpec.feature "Potepan::Categories", type: :feature do
   feature 'Categories page' do
     given(:taxonomy) { create(:taxonomy, name: 'Categories') }
     given(:taxon) { taxonomy.root }
-    given(:clothing) { create(:taxon, name: 'Clothing', taxonomy: taxonomy, parent: taxon)}
+    given(:clothing) { create(:taxon, name: 'Clothing', taxonomy: taxonomy, parent: taxon) }
     given(:shirts) { create(:taxon, name: 'Shirts', taxonomy: taxonomy, parent: clothing) }
     given!(:bags) { create(:taxon, name: 'Bags', taxonomy: taxonomy, parent: taxon) }
     given(:product1) { create(:product, name: 'Ruby Polo', price: 30, taxons: [shirts]) }
     given(:product2) { create(:product, name: 'Solidus Tote', price: 20, taxons: [bags]) }
     given(:image1) { create(:image) }
     given(:image2) { create(:image) }
-    given!(:filename) {
-      filename = image1.attachment_blob.filename
-      "#{filename.base}#{filename.extension_with_delimiter}"
-    }
+    given!(:filename) { image1.attachment_blob.filename }
+    given!(:file) { "#{filename.base}#{filename.extension_with_delimiter}" }
 
     background do
       product1.images << image1
@@ -29,14 +27,14 @@ RSpec.feature "Potepan::Categories", type: :feature do
         expect(page).to have_content shirts.name
         expect(page).to have_content shirts.products.count
         expect(page).to have_content bags.name
-        expect(page).to_not have_content clothing.name
+        expect(page).not_to have_content clothing.name
       end
       within ".productBox" do
         expect(page).to have_content product1.name
         expect(page).to have_content product1.display_price.to_s
-        expect(page).to_not have_content product2.name
-        expect(page).to_not have_content product2.display_price.to_s
-        expect(page).to have_selector "img[src$='#{filename}']"
+        expect(page).not_to have_content product2.name
+        expect(page).not_to have_content product2.display_price.to_s
+        expect(page).to have_selector "img[src$='#{file}']"
       end
     end
 
@@ -46,8 +44,8 @@ RSpec.feature "Potepan::Categories", type: :feature do
       expect(page).to have_title "#{product1.name} - BIGBAG Store"
       expect(page).to have_content product1.name
       expect(page).to have_content product1.display_price.to_s
-      expect(page).to_not have_content product2.name
-      expect(page).to_not have_content product2.display_price.to_s
+      expect(page).not_to have_content product2.name
+      expect(page).not_to have_content product2.display_price.to_s
     end
 
     scenario 'move products page from category page in side-nav class' do
@@ -56,8 +54,8 @@ RSpec.feature "Potepan::Categories", type: :feature do
       expect(page).to have_title "#{bags.name} - BIGBAG Store"
       expect(page).to have_content product2.name
       expect(page).to have_content product2.display_price.to_s
-      expect(page).to_not have_content product1.name
-      expect(page).to_not have_content product1.display_price.to_s
+      expect(page).not_to have_content product1.name
+      expect(page).not_to have_content product1.display_price.to_s
     end
 
     scenario 'move home from product page' do

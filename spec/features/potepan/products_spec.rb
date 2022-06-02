@@ -5,6 +5,7 @@ RSpec.feature "Potepan::Products", type: :feature do
     let(:taxon) { create(:taxon) }
     let(:product) { create(:product, taxons: [taxon]) }
     let(:image) { create(:image) }
+
     background do
       product.images << image
       visit potepan_product_path(product.id)

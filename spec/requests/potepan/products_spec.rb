@@ -16,7 +16,6 @@ RSpec.describe "Potepan::Products", type: :request do
 
     it "have product.name" do
       expect(response.body).to include(product.name)
-
     end
 
     it "have product.price" do

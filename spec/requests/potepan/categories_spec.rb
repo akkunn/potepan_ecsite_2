@@ -6,10 +6,8 @@ RSpec.describe "Potepan::Categories", type: :request do
     let(:taxon) { create(:taxon, taxonomy: taxonomy) }
     let(:product) { create(:product, taxons: [taxon]) }
     let(:image) { create(:image) }
-    let(:filename) {
-      filename = image.attachment_blob.filename
-      "#{filename.base}#{filename.extension_with_delimiter}"
-    }
+    let!(:filename) { image.attachment_blob.filename }
+    let!(:file) { "#{filename.base}#{filename.extension_with_delimiter}" }
 
     before do
       product.images << image
@@ -37,7 +35,7 @@ RSpec.describe "Potepan::Categories", type: :request do
     end
 
     it "has correct filename" do
-      expect(response.body).to include filename
+      expect(response.body).to include file
     end
   end
 end
