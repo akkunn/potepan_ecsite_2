@@ -26,7 +26,7 @@ RSpec.feature "Potepan::Categories", type: :feature do
       within ".side-nav" do
         expect(page).to have_content taxonomy1.name
         expect(page).to have_content taxon1.name
-        expect(page).to have_content taxon1.products.count
+        expect(page).to have_content "#{taxon1.name}(#{taxon1.products.count})"
         expect(page).to have_content taxon2.name
       end
       within ".productBox" do
