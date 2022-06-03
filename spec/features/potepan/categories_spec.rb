@@ -7,7 +7,7 @@ RSpec.feature "Potepan::Categories", type: :feature do
     given(:root1) { taxonomy1.root }
     given(:root2) { taxonomy2.root }
     given(:taxon1) { create(:taxon, taxonomy: taxonomy1, parent: root1, name: 'taxon1') }
-    given!(:taxon2) { create(:taxon, taxonomy: taxonomy2, parent: root2) }
+    given(:taxon2) { create(:taxon, taxonomy: taxonomy2, parent: root2) }
     given(:product1) { create(:product, taxons: [taxon1]) }
     given(:product2) { create(:product, taxons: [taxon2], price: 20) }
     given(:image1) { create(:image) }
