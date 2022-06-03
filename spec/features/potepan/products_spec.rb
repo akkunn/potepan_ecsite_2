@@ -10,6 +10,7 @@ RSpec.feature "Potepan::Products", type: :feature do
       product.images << image
       visit potepan_product_path(product.id)
     end
+
     scenario 'display product page' do
       expect(page).to have_title "#{product.name} - BIGBAG Store"
       expect(page).to have_selector '.page-title h2', text: product.name
@@ -21,7 +22,6 @@ RSpec.feature "Potepan::Products", type: :feature do
 
     scenario 'move category page from product page' do
       click_link '一覧ページへ戻る'
-      expect(page).to have_http_status(:success)
       expect(current_path).to eq potepan_category_path(taxon.id)
     end
 
