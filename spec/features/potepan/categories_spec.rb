@@ -48,14 +48,9 @@ RSpec.feature "Potepan::Categories", type: :feature do
       expect(page).not_to have_content product2.display_price.to_s
     end
 
-    scenario 'move products page from category page in side-nav class' do
+    scenario 'move other categories page from category page in side-nav class' do
       click_on taxon2.name
       expect(current_path).to eq potepan_category_path(taxon2.id)
-      expect(page).to have_title "#{taxon2.name} - BIGBAG Store"
-      expect(page).to have_content product2.name
-      expect(page).to have_content product2.display_price.to_s
-      expect(page).not_to have_content product1.name
-      expect(page).not_to have_content product1.display_price.to_s
     end
 
     scenario 'move home from product page' do
