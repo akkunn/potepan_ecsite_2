@@ -3298,6 +3298,13 @@ body.bodyColor.container {
   opacity: .8;
 }
 
+/*=== 7.4 PRODUCTS _products_html.erb ===*/
+.col-sm-4 .productBox .productCaption .categories-page-product-name {
+  margin-bottom: 25px;
+  font-size: 14px;
+  letter-spacing: 0;
+}
+
 /*=== 8. GENERIC CONTENT ===*/
 .genricContent h3 {
   margin-bottom: 30px;
