@@ -23,10 +23,10 @@ RSpec.feature "Potepan::Categories", type: :feature do
 
     scenario 'display categories page' do
       expect(page).to have_title "#{taxon1.name} - BIGBAG Store"
+      expect(page.all(".productBox").count).to eq taxon1.products.count
       within ".side-nav" do
         expect(page).to have_content taxonomy1.name
         expect(page).to have_content taxon1.name
-        expect(page).to have_content "#{taxon1.name}(#{taxon1.products.count})"
         expect(page).to have_content taxon2.name
       end
       within ".productBox" do
