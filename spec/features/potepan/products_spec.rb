@@ -12,11 +12,11 @@ RSpec.feature "Potepan::Products", type: :feature do
 
     background do
       product.images << image
-      [related_products, related_products_images].transpose.each do |related_product, related_products_image|
-        related_product.images << related_products_image
+      related_products.each_with_index do |related_product, i|
+        related_product.images << related_products_images[i]
       end
-      [other_related_products, other_related_products_images].transpose.each do |other_related_product, other_related_products_image|
-        other_related_product.images << other_related_products_image
+      other_related_products.each_with_index do |other_related_product, i|
+        other_related_product.images << other_related_products_images[i]
       end
       visit potepan_product_path(product.id)
     end
