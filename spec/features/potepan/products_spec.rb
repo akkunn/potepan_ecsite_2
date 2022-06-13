@@ -38,14 +38,14 @@ RSpec.feature "Potepan::Products", type: :feature do
     end
 
     scenario 'display related products' do
-      related_products.each do |related_product|
+      related_products.all? do |related_product|
         expect(page).to have_content related_product.name
         expect(page).to have_content related_product.display_price.to_s
       end
     end
 
     scenario 'move product page in related products' do
-      related_products.each do |related_product|
+      related_products.all? do |related_product|
         click_link related_product.name
         expect(current_path).to eq potepan_product_path(related_product.id)
       end
