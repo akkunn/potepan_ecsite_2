@@ -46,9 +46,12 @@ RSpec.feature "Potepan::Products", type: :feature do
       related_products.each do |related_product|
         expect(page).to have_content related_product.name
         expect(page).to have_content related_product.display_price.to_s
-        expect(page).to have_selector '.productBox', count: 4
         click_link related_product.name, href: potepan_product_path(related_product.id)
       end
+    end
+
+    scenario 'correct count of related products' do
+      expect(page).to have_selector '.productBox', count: 4
     end
 
     scenario 'display other related products' do
