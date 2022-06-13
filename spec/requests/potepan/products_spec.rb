@@ -12,8 +12,8 @@ RSpec.describe "Potepan::Products", type: :request do
     let(:taxonomy) { create(:taxonomy) }
     let(:taxon) { create(:taxon) }
     let(:product) { create(:product, taxons: [taxon]) }
-    let(:related_products) { create_list(:product, 4, taxons: [taxon]) }
-    let(:related_products_images) { create_list(:image, 4) }
+    let(:related_products) { create_list(:product, 5, taxons: [taxon]) }
+    let(:related_products_images) { create_list(:image, 5) }
 
     it "returns http success" do
       expect(response).to have_http_status(:success)
@@ -32,9 +32,13 @@ RSpec.describe "Potepan::Products", type: :request do
     end
 
     it "have related product" do
-      related_products.each do |related_product|
-        expect(response.body).to include(related_product.name)
-        expect(response.body).to include(related_product.display_price.to_s)
+      related_products.each_with_index do |related_product, i|
+        if i < 4
+          expect(response.body).to include(related_product.name)
+          expect(response.body).to include(related_product.display_price.to_s)
+        else
+          expect(response.body).not_to include(related_product.name)
+        end
       end
     end
   end
