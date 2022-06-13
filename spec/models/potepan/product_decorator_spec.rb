@@ -14,7 +14,7 @@ RSpec.describe Spree::ProductDecorator, type: :model do
       expect(product.related_products).not_to include product
     end
 
-    it "not uniq" do
+    it "is uniq in related products" do
       expect(product.related_products == related_products.uniq).to eq true
     end
   end
