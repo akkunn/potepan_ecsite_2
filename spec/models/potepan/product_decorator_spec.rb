@@ -3,8 +3,9 @@ require 'rails_helper'
 RSpec.describe Spree::ProductDecorator, type: :model do
   describe "#related_products" do
     let(:taxon) { create(:taxon) }
-    let(:product) { create(:product, taxons: [taxon]) }
-    let(:related_products) { create_list(:product, 4, taxons: [taxon]) }
+    let(:taxon2) { create(:taxon) }
+    let(:product) { create(:product, taxons: [taxon, taxon2]) }
+    let(:related_products) { create_list(:product, 4, taxons: [taxon, taxon2]) }
 
     it "returns related products" do
       expect(product.related_products).to match_array(related_products)
@@ -15,7 +16,7 @@ RSpec.describe Spree::ProductDecorator, type: :model do
     end
 
     it "is uniq in related products" do
-      expect(product.related_products == related_products.uniq).to eq true
+      expect(product.related_products).to eq related_products.uniq
     end
   end
 end
