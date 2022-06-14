@@ -31,15 +31,12 @@ RSpec.describe "Potepan::Products", type: :request do
       expect(response.body).to include(product.description)
     end
 
-    it "have related product" do
-      related_products.each_with_index do |related_product, i|
-        if i < 4
-          expect(response.body).to include(related_product.name)
-          expect(response.body).to include(related_product.display_price.to_s)
-        else
-          expect(response.body).not_to include(related_product.name)
-        end
+    it "have four related products" do
+      related_products[0..3].all? do |related_product|
+        expect(response.body).to include(related_product.name)
+        expect(response.body).to include(related_product.display_price.to_s)
       end
+      expect(response.body).not_to include(related_products[4].name)
     end
   end
 end
