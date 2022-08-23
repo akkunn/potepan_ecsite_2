@@ -5,9 +5,14 @@ RSpec.feature "Potepan::Products", type: :feature do
     let(:taxon) { create(:taxon) }
     let(:product) { create(:product, taxons: [taxon]) }
     let(:image) { create(:image) }
+    let(:related_products) { create_list(:product, 4, taxons: [taxon]) }
+    let(:related_products_images) { create_list(:image, 4) }
 
     background do
       product.images << image
+      related_products.each_with_index do |related_product, i|
+        related_product.images << related_products_images[i]
+      end
       visit potepan_product_path(product.id)
     end
 
@@ -30,6 +35,24 @@ RSpec.feature "Potepan::Products", type: :feature do
         click_link 'Home'
         expect(current_path).to eq potepan_index_path
       end
+    end
+
+    scenario 'display related products' do
+      related_products.all? do |related_product|
+        expect(page).to have_content related_product.name
+        expect(page).to have_content related_product.display_price.to_s
+      end
+    end
+
+    scenario 'move product page in related products' do
+      related_products.all? do |related_product|
+        click_link related_product.name
+        expect(current_path).to eq potepan_product_path(related_product.id)
+      end
+    end
+
+    scenario 'correct count of related products' do
+      expect(page).to have_selector '.productBox', count: 4
     end
   end
 end
